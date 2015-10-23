@@ -12,7 +12,7 @@ import (
 
 	"github.com/lair-framework/api-server/client"
 	"github.com/lair-framework/go-lair"
-	"github.com/mattburch/go-nikto"
+	"github.com/lair-framework/go-nikto"
 )
 
 const (
