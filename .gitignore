@@ -1,0 +1,5 @@
+*.exe
+*.tar.gz
+*.xml
+
+.DS_Store
