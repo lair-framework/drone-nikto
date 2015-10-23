@@ -34,7 +34,7 @@ Options:
 func buildProject(nikto *nikto.NiktoData, exproject *lair.Project, tags []string) (map[string]bool, error) {
 	var bNotFound map[string]bool
 	exproject.Tool = tool
-	var string command
+	var command string
 
 	for _, scan := range nikto.NiktoScan {
 		for _, item := range scan.ScanDetails {
@@ -104,7 +104,7 @@ func buildProject(nikto *nikto.NiktoData, exproject *lair.Project, tags []string
 		Tool:    tool,
 		Command: command,
 	})
-	exproject.Commands = command
+	exproject.Commands = com
 
 	return bNotFound, nil
 }
