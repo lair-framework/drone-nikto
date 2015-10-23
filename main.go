@@ -34,15 +34,11 @@ Options:
 func buildProject(nikto *nikto.NiktoData, exproject *lair.Project, tags []string) (map[string]bool, error) {
 	var bNotFound map[string]bool
 	exproject.Tool = tool
+	var string command
 
-	command := make([]lair.Command, 0)
 	for _, scan := range nikto.NiktoScan {
 		for _, item := range scan.ScanDetails {
-			// Update project with Nikto command statement
-			command = append(command, lair.Command{
-				Tool:    tool,
-				Command: scan.Options,
-			})
+			command = scan.Options
 
 			// Confirm if Host and Port existing in current project
 			found := false
@@ -102,7 +98,14 @@ func buildProject(nikto *nikto.NiktoData, exproject *lair.Project, tags []string
 			}
 		}
 	}
+	// Update project with Nikto command
+	com := make([]lair.Command, 0)
+	com = append(com, lair.Command{
+		Tool:    tool,
+		Command: command,
+	})
 	exproject.Commands = command
+
 	return bNotFound, nil
 }
 
