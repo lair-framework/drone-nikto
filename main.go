@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"go-nikto"
 	"io/ioutil"
 	"log"
 	"net/url"
@@ -12,11 +13,10 @@ import (
 
 	"github.com/lair-framework/api-server/client"
 	"github.com/lair-framework/go-lair"
-	"github.com/lair-framework/go-nikto"
 )
 
 const (
-	version = "2.0.0"
+	version = "2.0.1"
 	tool    = "nikto"
 	usage   = `
 Usage:
@@ -32,7 +32,7 @@ Options:
 )
 
 func buildProject(nikto *nikto.NiktoData, exproject *lair.Project, tags []string) (map[string]bool, error) {
-	var bNotFound map[string]bool
+	bNotFound := make(map[string]bool)
 	exproject.Tool = tool
 	var command string
 
@@ -99,7 +99,7 @@ func buildProject(nikto *nikto.NiktoData, exproject *lair.Project, tags []string
 		}
 	}
 	// Update project with Nikto command
-	com := make([]lair.Command, 0)
+	var com []lair.Command
 	com = append(com, lair.Command{
 		Tool:    tool,
 		Command: command,
