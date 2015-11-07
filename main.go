@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"go-nikto"
 	"io/ioutil"
 	"log"
 	"net/url"
@@ -13,6 +12,7 @@ import (
 
 	"github.com/lair-framework/api-server/client"
 	"github.com/lair-framework/go-lair"
+	"github.com/mattburch/go-nikto"
 )
 
 const (
